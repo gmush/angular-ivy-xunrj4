@@ -12,6 +12,7 @@ import { StudentComponent } from '../student/student.component';
 })
 export class StudentsComponent implements OnInit {
   students: Student[] = [];
+  averageGrade = 0;
 
   constructor(
     private studentService: StudentService,
@@ -24,6 +25,7 @@ export class StudentsComponent implements OnInit {
 
   getStudents(): void {
     this.students = this.studentService.getStudents();
+    this.averageGrade = this.studentService.getAverageGrade();
   }
 
   add(): void {

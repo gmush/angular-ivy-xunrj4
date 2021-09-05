@@ -39,4 +39,13 @@ export class StudentService {
   deleteStudent(id: number) {}
 
   updateStudent(student: Student) {}
+
+  getAverageGrade() {
+    const sum = this.students.reduce((a, b) => a + b.grade, 0);
+    const avg = sum / this.students.length || 0;
+    return avg;
+    // this.students.map(function(o) {
+    //   return o.grade;
+    // })
+  }
 }
