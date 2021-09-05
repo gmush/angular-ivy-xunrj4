@@ -1,0 +1,15 @@
+<h2>Students</h2>
+
+<button class="add-button">
+Add student
+</button>
+
+<ul class="students">
+  <li *ngFor="let student of students">
+    <span class="badge">{{student.id}}</span> {{student.name}}
+    <button class="btn btn-primary delete" title="delete student"
+      (click)="delete(student)">x</button>
+    <button class="btn btn-primary edit" title="delete student"
+      (click)="edit(student)"><i class="bi bi-pencil-square"></i></button>
+  </li>
+</ul>
