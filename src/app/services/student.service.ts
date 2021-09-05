@@ -47,9 +47,8 @@ export class StudentService {
   }
 
   getAverageGrade() {
-    const sum = this.students.reduce((prev, student) => {
-      console.log(prev, student.grade);
-      return prev + student.grade;
+    const sum = this.students.reduce((acc, student) => {
+      return acc + student.grade;
     }, 0);
     const avg = sum / this.students.length || 0;
     return avg;
