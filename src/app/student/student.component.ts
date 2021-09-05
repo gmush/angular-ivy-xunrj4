@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Student } from '../interfaces/student';
 import { StudentService } from '../services/student.service';
@@ -25,7 +26,8 @@ export class StudentComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
@@ -54,8 +56,9 @@ export class StudentComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+    this.studentForm.value.id = -1;
     console.warn(this.studentForm.value);
+    this.studentService.addStudent(this.studentForm.value);
   }
 
   close() {}
