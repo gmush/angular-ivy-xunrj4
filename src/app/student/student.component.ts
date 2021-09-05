@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,16 +13,10 @@ import { StudentService } from '../services/student.service';
 })
 export class StudentComponent implements OnInit {
   student: Student | undefined;
-  @Input() id;
+  @Input() id: number;
 
   currentId = 0;
-
-  studentForm = this.fb.group({
-    name: ['', Validators.required],
-    surname: ['', Validators.required],
-    class: ['', Validators.required],
-    grade: [1, Validators.required]
-  });
+  studentForm: FormGroup;
 
   constructor(
     private studentService: StudentService,
@@ -31,32 +25,25 @@ export class StudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getStudent();
-    this.currentId = this.studentService.currentId;
-  }
-
-  getStudent(): void {
-    // this.studentService.getStudent();
-  }
-
-  update(): void {
-    if (this.student) {
-      this.studentService.updateStudent(this.student);
+    if (this.id !== -1) {
+      this.student = this.studentService.getStudent(this.id);
     }
-  }
 
-  add(): void {
-    this.studentService.addStudent({
-      id: 0,
-      name: 'student.name',
-      surname: 'student.surname',
-      class: 'student.class',
-      grade: 6
+    this.currentId = this.studentService.currentId;
+
+    this.studentForm = this.fb.group({
+      name: [this.student?.name, Validators.required],
+      surname: [this.student?.surname, Validators.required],
+      class: [this.student?.class, Validators.required],
+      grade: [this.student?.grade, Validators.required]
     });
+
+    console.log('this.studentForm', this.studentForm);
   }
 
   onSubmit() {
-    this.studentForm.value.id = -1;
+    this.activeModal.dismiss('Cross click');
+    this.studentForm.value.id = this.id;
     console.warn(this.studentForm.value);
     this.studentService.addStudent(this.studentForm.value);
   }

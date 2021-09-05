@@ -7,6 +7,7 @@ import { Student } from '../interfaces/student';
 export class StudentService {
   students: Student[] = [];
   currentId = 0;
+  averageGrade = 0;
   constructor() {
     this.students = data.students;
     this.currentId =
@@ -19,12 +20,13 @@ export class StudentService {
   }
 
   getStudents() {
+    this.averageGrade = this.getAverageGrade();
     return this.students;
   }
 
-  getStudent(id: number) {}
-
-  searchStudentes(school_class: string) {}
+  getStudent(id: number): Student {
+    return this.students.filter(s => s.id === id)[0];
+  }
 
   addStudent(student: Student) {
     this.students.push({
@@ -32,20 +34,24 @@ export class StudentService {
       name: student.name,
       surname: student.surname,
       class: student.class,
-      grade: student.grade
+      grade: Number(student.grade)
     });
+    this.averageGrade = this.getAverageGrade();
   }
 
-  deleteStudent(id: number) {}
-
-  updateStudent(student: Student) {}
+  deleteStudent(id: number) {
+    this.students.forEach((value, index) => {
+      if (value.id == id) this.students.splice(index, 1);
+    });
+    this.averageGrade = this.getAverageGrade();
+  }
 
   getAverageGrade() {
-    const sum = this.students.reduce((a, b) => a + b.grade, 0);
+    const sum = this.students.reduce((prev, student) => {
+      console.log(prev, student.grade);
+      return prev + student.grade;
+    }, 0);
     const avg = sum / this.students.length || 0;
     return avg;
-    // this.students.map(function(o) {
-    //   return o.grade;
-    // })
   }
 }
