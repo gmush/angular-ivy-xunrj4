@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -12,26 +12,26 @@ import { StudentService } from '../services/student.service';
 })
 export class StudentComponent implements OnInit {
   student: Student | undefined;
+  @Input() id;
 
-  constructor(
-    private route: ActivatedRoute,
-    private studentService: StudentService,
-    private location: Location
-  ) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getStudent();
   }
 
   getStudent(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.studentService.getStudent(id);
+    // this.studentService.getStudent();
   }
 
-  save(): void {
+  update(): void {
     if (this.student) {
       this.studentService.updateStudent(this.student);
     }
+  }
+
+  add(): void {
+    this.studentService.addStudent();
   }
 
   close() {}

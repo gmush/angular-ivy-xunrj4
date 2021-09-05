@@ -1,3 +1,4 @@
+[STUDENT] {{ id }}
 <div *ngIf="student">
   <h2>{{student.name | uppercase}} Details</h2>
   <div><span>id: </span>{{student.id}}</div>
@@ -6,5 +7,5 @@
     <input id="student-name" [(ngModel)]="student.name" placeholder="Student name"/>
   </div>
   <button (click)="close()">go back</button>
-  <button (click)="save()">save</button>
+  <button (click)="update()">save</button>
 </div>

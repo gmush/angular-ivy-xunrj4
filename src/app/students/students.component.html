@@ -1,15 +1,27 @@
 <h2>Students</h2>
 
-<button class="add-button">
-Add student
+<div ngbDropdown class="d-inline-block">
+  <button class="btn btn-outline-primary mx-2" id="dropdownBasic1" ngbDropdownToggle>Klasa</button>
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <button (click)="filterClass('1A')" ngbDropdownItem>1A</button>
+    <button (click)="filterClass('2B')" ngbDropdownItem>2B</button>
+    <button (click)="filterClass('3D')" ngbDropdownItem>3D</button>
+  </div>
+</div>
+
+<button class="btn btn-success" (click)="add()">
+<i class="bi bi-plus-square"></i> Add student
 </button>
 
 <ul class="students">
-  <li *ngFor="let student of students">
-    <span class="badge">{{student.id}}</span> {{student.name}}
+  <li *ngFor="let student of students; index as i">
+    <span class="badge bg-info">{{i}}</span>
+    <span class="name">{{student.name}} {{student.surname}}</span>
+    <span>{{student.class}}</span>
+    <span>{{student.grade}}</span>
     <button class="btn btn-primary delete" title="delete student"
-      (click)="delete(student)">x</button>
+      (click)="delete(student)"><i class="bi bi-x-square"></i> Delete</button>
     <button class="btn btn-primary edit" title="delete student"
-      (click)="edit(student)"><i class="bi bi-pencil-square"></i></button>
+      (click)="edit(student)"><i class="bi bi-pencil-square"></i> Edit</button>
   </li>
 </ul>

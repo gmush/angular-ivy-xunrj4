@@ -18,7 +18,15 @@ export class StudentService {
 
   searchStudentes(school_class: string) {}
 
-  addStudent(student: Student) {}
+  addStudent() {
+    this.students.push({
+      id: 22,
+      name: 'aas',
+      surname: 'sad',
+      class: '2A',
+      grade: 2
+    });
+  }
 
   deleteStudent(id: number) {}
 

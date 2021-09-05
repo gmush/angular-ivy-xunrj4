@@ -1,6 +1,27 @@
+@import '../variables';
+
 .students {
-  margin: 0 0 2em 0;
+  margin: 1em 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  width: 100%;
+  ul {
+    width: 100%;
+  }
+  li {
+    background-color: $background-color-1;
+    margin: 0 0 1em 0;
+    padding: 1em;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span:not(.badge) {
+      &.name {
+        width: 25%;
+      }
+      width: 10%;
+      line-height: 1.3em;
+    }
+  }
 }
