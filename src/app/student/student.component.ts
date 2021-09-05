@@ -14,10 +14,13 @@ export class StudentComponent implements OnInit {
   student: Student | undefined;
   @Input() id;
 
+  currentId = 0;
+
   constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getStudent();
+    this.currentId = this.studentService.currentId;
   }
 
   getStudent(): void {
@@ -31,7 +34,13 @@ export class StudentComponent implements OnInit {
   }
 
   add(): void {
-    this.studentService.addStudent();
+    this.studentService.addStudent({
+      id: 0,
+      name: 'student.name',
+      surname: 'student.surname',
+      class: 'student.class',
+      grade: 6
+    });
   }
 
   close() {}

@@ -28,21 +28,23 @@ export class StudentsComponent implements OnInit {
 
   add(): void {
     const modalRef = this.modalService.open(StudentComponent);
-    this.studentService.addStudent();
+    modalRef.componentInstance.id = -1;
   }
 
-  delete(student: Student): void {
+  delete(student: Student, index: number): void {
     this.students = this.students.filter(s => s !== student);
     this.studentService.deleteStudent(student.id);
   }
 
-  edit(student: Student) {
+  edit(student: Student, index: number) {
     const modalRef = this.modalService.open(StudentComponent);
-    //modalRef.componentInstance.id = 2;
+    modalRef.componentInstance.id = 2;
   }
 
   filterClass(school_class: string): void {
     this.students = this.studentService.getStudents();
-    this.students = this.students.filter(s => s.class === school_class);
+    if (school_class) {
+      this.students = this.students.filter(s => s.class === school_class);
+    }
   }
 }

@@ -6,8 +6,16 @@ import { Student } from '../interfaces/student';
 @Injectable({ providedIn: 'root' })
 export class StudentService {
   students: Student[] = [];
+  currentId = 0;
   constructor() {
     this.students = data.students;
+    this.currentId =
+      Math.max.apply(
+        Math,
+        this.students.map(function(o) {
+          return o.id;
+        })
+      ) + 1;
   }
 
   getStudents() {
@@ -18,13 +26,13 @@ export class StudentService {
 
   searchStudentes(school_class: string) {}
 
-  addStudent() {
+  addStudent(student: Student) {
     this.students.push({
-      id: 22,
-      name: 'aas',
-      surname: 'sad',
-      class: '2A',
-      grade: 2
+      id: this.currentId++,
+      name: student.name,
+      surname: student.surname,
+      class: student.class,
+      grade: student.grade
     });
   }
 
