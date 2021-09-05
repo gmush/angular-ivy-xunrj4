@@ -1,0 +1,44 @@
+[
+  {
+		name: "Adam",
+		surname: "Macka",
+    class: "1A",
+    grade: "2"
+  },
+  {
+		name: "Marian",
+		surname: "Tacka",
+    class: "2B",
+    grade: "2"
+  },
+  {
+		name: "Ania",
+		surname: "Podko",
+    class: "1A",
+    grade: "4"
+  },
+  {
+		name: "Muhamad",
+		surname: "Siouko",
+    class: "3D",
+    grade: "1"
+  },
+  {
+		name: "Monia",
+		surname: "Macka",
+    class: "3D",
+    grade: "6"
+  },
+  {
+		name: "Jola",
+		surname: "Małecka",
+    class: "1A",
+    grade: "4"
+  },
+  {
+		name: "Adam",
+		surname: "Ozga",
+    class: "1A",
+    grade: "5"
+  }
+]
